@@ -1,0 +1,35 @@
+---
+version: 1
+handlers:
+   file:
+      class: logging.handlers.TimedRotatingFileHandler
+      filename: '/opt/openvas-automated-scan/log/logfile.log'
+      level: DEBUG
+      formatter: simpleFormatter
+      when: midnight 
+      backupCount: 5
+formatters:
+   simpleFormatter:
+      #class: !!python/name:logging.Formatter
+      #class: logging.Formatter
+      format: '%(name)s %(asctime)s %(levelname)s %(message)s'
+      datefmt: '%m/%d/%Y %H:%M:%S'
+root:
+   level: DEBUG
+   handlers: [file]
+loggers:
+   openvas-automated.checkOpenvas:
+      level: DEBUG
+   openvas-automated.dbManager:
+      level: DEBUG
+   openvas-automated.openvasExec:
+      level: DEBUG
+   openvas-automated.nmapConvert:
+      level: DEBUG
+   openvas-automated.makeEmail:
+      level: DEBUG
+   openvas-automated.threadManager:
+      level: DEBUG
+   qa-testing:
+      level: DEBUG
+...

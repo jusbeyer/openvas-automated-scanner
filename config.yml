@@ -1,0 +1,71 @@
+---
+#If these are null alerts will be sent every time a failure occurs
+#All times are in seconds
+alerts:
+    retry-thresholds:
+        nmap: 1 
+        openvas: 1
+        archiver: 1
+
+    runtime:
+        #This is defined in seconds
+        nmap: 720000
+        #This can be set to ignore,alert,kill,or restart
+        rule-nmap: alert
+        #This rule will only take affect when restarting fails more than
+        #the threshold. It should not be restart.
+        secondary-rule-nmap: alert
+        archiver: 120
+        rule-archiver: ignore 
+        secondary-rule-archiver: alert
+mysql:
+    host: localhost
+    user: 
+    passwd: 
+    db: 
+    table: 
+email:
+    reports:
+        sender:  ''
+        recipients:  ['','']
+    alerts:
+        sender: ''
+        recipients: ['']
+    smtp-server: 
+    username: 
+    passwd: 
+filepaths:
+    backup:  '/opt/openvas-automated-scan/backup/archive'
+    reports: '/opt/openvas-automated-scan/scan-report-storage'
+    server-domain: '/opt/openvas-automated-scan/ip-config/server-domain'
+    exclude-list:  '/opt/openvas-automated-scan/ip-config/exclude-list'
+    nmap-report:   '/opt/openvas-automated-scan/nmapOutput.xml'      
+    archive-script: '/opt/openvas-automated-scan/archiveScanReports.sh'    
+time:
+    #this value is seconds 
+    time-between-scans: 43200
+Openvas:
+    enabled: False
+    alerts:
+        report-runtime: 300
+        report-runtime-rule: alert
+        report-runtime-retries: 2
+        omp-runtime: 300
+        #This runtime rule should not ever be set to restart
+        omp-runtime-rule: alert
+        openvas-scan-max-runtime:
+        scan-number-of-retries: 2
+        scan-runtime-rule: alert
+    creds: #Uses the ID numbers stored in openvas
+        ssh-id:
+        ssh-port:
+        smb-id: 
+        esxi-id:
+    scan-type-id: 
+    report-type-id: 
+    report-filetype: pdf
+    report-file-extension: .pdf
+    task-name: "Constant Scan"
+nmap:
+    ports: ''
+...
